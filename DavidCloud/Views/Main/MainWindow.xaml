@@ -1,0 +1,70 @@
+﻿<Window x:Class="DavidCloud.Views.Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DavidCloud.Views.Main"
+        mc:Ignorable="d"
+        Title="戴维云服务器" Height="600" Width="1000" Background="#FFF0F9D8" 
+        WindowStartupLocation="CenterScreen" Initialized="Window_Initialized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Rectangle Margin="5" Fill="#FFF0F9D8"
+                Stroke="Blue" StrokeDashArray="3" />
+        <Expander ExpandDirection="Right"
+                 Margin="10"
+                 IsExpanded="True">
+            <ScrollViewer>
+                <StackPanel Background="White">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Margin" Value="10 5 10 0" />
+                            <Setter Property="Padding" Value="10 0 10 0"/>
+                            <Setter Property="BorderBrush" Value="{x:Null}"/>
+                            <Setter Property="Foreground" Value="Blue"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <EventSetter Event="Click" Handler="Button_Click" />
+                        </Style>
+                        <Style TargetType="Expander">
+                            <Setter Property="Background" Value="AliceBlue"/>
+                            <Setter Property="IsExpanded" Value="True"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Expander Header="管理员">
+                        <StackPanel Background="White">
+                            <Button Content="服务管理" Tag="/Views/Manager/ServiceManager.xaml"/>
+                            <Button Content="设备测试" Tag="/Views/Manager/DeviceTest.xaml" />
+                            <Button Content="用户管理" Tag="/Manager/UserManager.xaml" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="分销商">
+                        <StackPanel Background="White">
+                            <Button Content="设备管理" Tag="/Distributor/DeviceManager.xaml" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="小区">
+                        <StackPanel Background="White">
+                            <Button Content="设备管理" Tag="/Community/DeviceManager.xaml" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="辅助功能">
+                        <StackPanel Background="White">
+                            <Button Content="系统主页" Tag="/Views/Common/StartPage.xaml" />
+                            <Button Content="密码修改" Tag="/Common/ChangePassword.xaml" />
+                            <Button Content="操作帮助" Tag="/Common/Help.xaml" />
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+        </Expander>
+        <Frame Name="detailFrame" Grid.Column="1" Margin="5"
+               Background="White"
+               BorderThickness="1" BorderBrush="Blue"
+               NavigationUIVisibility="Hidden"
+               Source="/Views/Manager/ServiceManager.xaml"/>
+    </Grid>
+</Window>
+
