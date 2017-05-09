@@ -1,4 +1,5 @@
-﻿using DavidCloud.Utils;
+﻿using DavidCloud.Networks;
+using DavidCloud.Utils;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
@@ -59,8 +60,8 @@ namespace DavidCloud.Views.Manager
                 startServer.IsEnabled = false;
                 stopServer.IsEnabled = true;
                 IUnityContainer container = UnityConfig.GetConfiguredContainer();
-                //IConsoleServer consoleServer = container.Resolve<IConsoleServer>();
-                //consoleServer.Start();
+                IConsoleServer consoleServer = container.Resolve<IConsoleServer>();
+                consoleServer.Start();
                 //IMobileServer mobileServer = container.Resolve<IMobileServer>();
                 //mobileServer.Start();
             }
@@ -75,8 +76,8 @@ namespace DavidCloud.Views.Manager
             startServer.IsEnabled = true;
             stopServer.IsEnabled = false;
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            //IConsoleServer consoleServer = container.Resolve<IConsoleServer>();
-            //consoleServer.Dispose();
+            IConsoleServer consoleServer = container.Resolve<IConsoleServer>();
+            consoleServer.Dispose();
             //IMobileServer mobileServer = container.Resolve<IMobileServer>();
             //mobileServer.Dispose();
         }

@@ -1,4 +1,10 @@
-﻿using Microsoft.Practices.Unity;
+﻿using DavidCloud.Commands;
+using DavidCloud.Controls;
+using DavidCloud.Databases;
+using DavidCloud.Models;
+using DavidCloud.Networks;
+using DavidCloud.Packets;
+using Microsoft.Practices.Unity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,31 +41,31 @@ namespace DavidCloud.Utils
         {
             // TODO: Register your types here
             //Networks
-            //container.RegisterType<IConsoleServer, ConsoleServer>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IConsoleServer, ConsoleServer>(new ContainerControlledLifetimeManager());
             //container.RegisterType<IMobileServer, MobileServer>(new ContainerControlledLifetimeManager());
 
-            ////Databases
-            //container.RegisterType<DavidConsoleRepository>(new ContainerControlledLifetimeManager());
+            //Databases
+            container.RegisterType<DavidConsoleRepository>(new ContainerControlledLifetimeManager());
 
-            ////Controls
-            //container.RegisterType<ConsoleControl>(new ContainerControlledLifetimeManager());
+            //Controls
+            container.RegisterType<ConsoleControl>(new ContainerControlledLifetimeManager());
             //container.RegisterType<MobileControl>(new ContainerControlledLifetimeManager());
             //container.RegisterType<RequstHandler>(new ContainerControlledLifetimeManager());
-            //container.RegisterType<ConsoleObserver>(new ContainerControlledLifetimeManager());
+            container.RegisterType<ConsoleObserver>(new ContainerControlledLifetimeManager());
             //container.RegisterType<MobileObserver>(new ContainerControlledLifetimeManager());
 
-            ////Messages
-            //container.RegisterType<ConsoleRequest>();
+            //Messages
+            container.RegisterType<ConsoleRequest>();
             //container.RegisterType<MobileWrapperMessage>();
-            //container.RegisterType<Packet>();
+            container.RegisterType<Packet>();
 
-            ////Models
-            //container.RegisterType<DavidConsole>();
-            //container.RegisterType<Mobile>();
-            //container.RegisterType<BaiduLocation>();
+            //Models
+            container.RegisterType<DavidConsole>();
+            container.RegisterType<Mobile>();
+            container.RegisterType<BaiduLocation>();
 
-            ////commands
-            //container.RegisterType<ConsoleCommand>();
+            //commands
+            container.RegisterType<ConsoleCommand>();
             //container.RegisterType<MobileSearchResponse>();
 
 

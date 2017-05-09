@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using DavidCloud.Databases;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DavidCloud.Views.Main
         {
             try
             {
-                //using (DavidDatabase davidCloud = new DavidDatabase())
-                //{
-                //    davidCloud.Database.CreateIfNotExists();
-                //}
+                using (DavidDatabase davidCloud = new DavidDatabase())
+                {
+                    davidCloud.Database.CreateIfNotExists();
+                }
             }
             catch (Exception ex)
             {

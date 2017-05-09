@@ -57,6 +57,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Reactive.Core, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Reactive.Core.3.1.1\lib\net46\System.Reactive.Core.dll</HintPath>
@@ -89,6 +90,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ConsoleCommand.cs" />
+    <Compile Include="Controls\ConsoleControl.cs" />
+    <Compile Include="Controls\MessageBuilder.cs" />
+    <Compile Include="Databases\DavidConsoleRepository.cs" />
+    <Compile Include="Databases\DavidDatabase.cs" />
+    <Compile Include="Models\BaiduLocation.cs" />
+    <Compile Include="Models\DavidConsole.cs" />
+    <Compile Include="Models\Mobile.cs" />
+    <Compile Include="Networks\ClientExtensions.cs" />
+    <Compile Include="Networks\ConsoleObserver.cs" />
+    <Compile Include="Networks\ConsoleServer.cs" />
+    <Compile Include="Networks\IConsoleServer.cs" />
+    <Compile Include="Packets\ConsoleRequest.cs" />
+    <Compile Include="Packets\IDatagram.cs" />
+    <Compile Include="Packets\Packet.cs" />
     <Compile Include="Utils\ByteUtil.cs" />
     <Compile Include="Utils\Constant.cs" />
     <Compile Include="Utils\JsonHelper.cs" />
@@ -145,5 +161,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
