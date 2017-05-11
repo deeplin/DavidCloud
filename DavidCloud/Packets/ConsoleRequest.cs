@@ -18,12 +18,8 @@ namespace DavidCloud.Packets
         public const int TOKEN_LENGTH = 8;
 
         public const int LOGIN_MESSAGE = 0;
-        public const int HEART_BEAT_MESSAGE = 1;
-        public const int STATUS_MESSAGE = 3;
-        public const int MEMORY_MESSAGE = 4;
         public const int LOCATION_MESSAGE = 5;
-        public const int MENU_MESSAGE = 6;
-        public const int STOP_MESSAGE = 7;
+        public const int ALERT_MESSAGE = 6;
 
         public bool Encryption { get; set; }
 

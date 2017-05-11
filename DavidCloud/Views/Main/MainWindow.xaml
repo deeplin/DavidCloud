@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DavidCloud.Views.Main"
         mc:Ignorable="d"
-        Title="电梯云服务器" Height="600" Width="1000" Background="#FFF0F9D8" 
+        Title="戴维云服务器" Height="600" Width="1000" Background="#FFF0F9D8" 
         WindowStartupLocation="CenterScreen" Initialized="Window_Initialized">
     <Grid>
         <Grid.ColumnDefinitions>

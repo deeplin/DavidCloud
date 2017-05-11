@@ -15,8 +15,17 @@ namespace DavidCloud.Models
     [DataContract]
     public class DavidConsole
     {
+
+        public DavidConsole()
+        {
+            BaiduLocation = new BaiduLocation();
+            Hospital = new Hospital();
+            Alert = new Alert();
+        }
+
         [Key]
         [DataMember(Name = "CI")]
+        [MaxLength(1024)]
         public String DavidConsoleId
         {
             get; set;
@@ -33,6 +42,7 @@ namespace DavidCloud.Models
         }
 
         [DataMember(Name = "DM")]
+        [MaxLength(64)]
         public string DeviceModel
         {
             get; set;
@@ -63,6 +73,10 @@ namespace DavidCloud.Models
         [DataMember(Name = "BL")]
         public BaiduLocation BaiduLocation { get; set; }
 
+        public Hospital Hospital { get; set; }
+
+        public Alert Alert { get; set; }
+
         public String TokenBase64 { get; set; }
 
         public void InitializeUser(string consoleId, string user, string password,
@@ -74,7 +88,6 @@ namespace DavidCloud.Models
             DeviceModel = deviceModel;
             Manufacture = manufacture;
             ManufactureDate = productionDate;
-            BaiduLocation = new BaiduLocation();
 
             LoginTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
@@ -85,20 +98,20 @@ namespace DavidCloud.Models
             HeartBeatTime = DateTime.Now;
         }
 
-        public DavidConsole Clone()
-        {
-            IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            DavidConsole console = container.Resolve<DavidConsole>();
-            console.DavidConsoleId = DavidConsoleId;
-            console.User = User;
-            console.Password = Password;
-            console.DeviceModel = DeviceModel;
-            console.ManufactureDate = ManufactureDate;
-            console.ConsoleEndPoint = ConsoleEndPoint;
-            console.LoginTime = LoginTime;
-            console.BaiduLocation = BaiduLocation;
-            console.TokenBase64 = TokenBase64;
-            return console;
-        }
+        //public DavidConsole Clone()
+        //{
+        //    IUnityContainer container = UnityConfig.GetConfiguredContainer();
+        //    DavidConsole console = container.Resolve<DavidConsole>();
+        //    console.DavidConsoleId = DavidConsoleId;
+        //    console.User = User;
+        //    console.Password = Password;
+        //    console.DeviceModel = DeviceModel;
+        //    console.ManufactureDate = ManufactureDate;
+        //    console.ConsoleEndPoint = ConsoleEndPoint;
+        //    console.LoginTime = LoginTime;
+        //    console.BaiduLocation = BaiduLocation;
+        //    console.TokenBase64 = TokenBase64;
+        //    return console;
+        //}
     }
 }

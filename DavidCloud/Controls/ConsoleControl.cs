@@ -33,69 +33,46 @@ namespace DavidCloud.Controls
             string manufacture = MessageBuilder.GetNext(data, ref index);
             string productionDate = MessageBuilder.GetNext(data, ref index);
 
-            DavidConsole console;
+            DavidConsole davidConsole;
             byte[] token;
 
+            IUnityContainer container = UnityConfig.GetConfiguredContainer();
+            DavidConsoleRepository davidConsoleRepository = container.Resolve<DavidConsoleRepository>();
             lock (this)
             {
                 if (mConsoleDictionary.ContainsKey(consoleId))
                 {
                     String tokenBase64 = mConsoleDictionary[consoleId];
-                    console = mTokenDictionary[tokenBase64];
+                    davidConsole = mTokenDictionary[tokenBase64];
                     token = Convert.FromBase64String(tokenBase64);
-                    console.TokenBase64 = tokenBase64;
+                    davidConsole.TokenBase64 = tokenBase64;
                 }
                 else
                 {
-                    token = ByteUtil.GetRandom(ConsoleRequest.TOKEN_LENGTH);
-                    IUnityContainer consoleContainer = UnityConfig.GetConfiguredContainer();
-                    console = consoleContainer.Resolve<DavidConsole>();
+                    davidConsole = davidConsoleRepository.SelectFromId(consoleId);
+                    if (davidConsole == null)
+                    {
+                        token = ByteUtil.GetRandom(ConsoleRequest.TOKEN_LENGTH);
+                        IUnityContainer consoleContainer = UnityConfig.GetConfiguredContainer();
+                        davidConsole = consoleContainer.Resolve<DavidConsole>();
 
-                    string tokenBase64 = Convert.ToBase64String(token);
-                    mConsoleDictionary[consoleId] = tokenBase64;
-                    mTokenDictionary[tokenBase64] = console;
-
-                    console.TokenBase64 = tokenBase64;
+                        string tokenBase64 = Convert.ToBase64String(token);
+                        davidConsole.TokenBase64 = tokenBase64;
+                    }else
+                    {
+                        token = Convert.FromBase64String(davidConsole.TokenBase64);
+                    }
+                    mConsoleDictionary[consoleId] = davidConsole.TokenBase64;
+                    mTokenDictionary[davidConsole.TokenBase64] = davidConsole;
                 }
             }
 
-            console.InitializeUser(consoleId, user, password, modelDevice, manufacture, productionDate);
-            console.InitializeAddress(consoleEndPoint);
+            davidConsole.InitializeUser(consoleId, user, password, modelDevice, manufacture, productionDate);
+            davidConsole.InitializeAddress(consoleEndPoint);
 
-            IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            DavidConsoleRepository DavidConsoleRepository = container.Resolve<DavidConsoleRepository>();
-            DavidConsoleRepository.Save(console);
+            davidConsoleRepository.Save(davidConsole);
 
             return BuildResponse(data, token, consoleEndPoint);
-        }
-
-        public Packet HeartBeat(byte[] data, IPEndPoint consoleEndPoint)
-        {
-            byte[] token = MessageBuilder.GetToken(data);
-            string tokenBase64 = Convert.ToBase64String(token);
-            lock (this)
-            {
-                if (mTokenDictionary.ContainsKey(tokenBase64))
-                {
-                    DavidConsole DavidConsole = mTokenDictionary[tokenBase64];
-                    DavidConsole.InitializeAddress(consoleEndPoint);
-                }
-                else
-                {
-                    IUnityContainer container = UnityConfig.GetConfiguredContainer();
-                    DavidConsoleRepository DavidConsoleRepository = container.Resolve<DavidConsoleRepository>();
-                    DavidConsole DavidConsole = DavidConsoleRepository.SelectFromToken(tokenBase64);
-                    if (DavidConsole != null)
-                    {
-                        DavidConsole.InitializeAddress(consoleEndPoint);
-
-                        mConsoleDictionary[DavidConsole.DavidConsoleId] = tokenBase64;
-                        mTokenDictionary[tokenBase64] = DavidConsole;
-                    }
-                }
-            }
-
-            return UpdateConsoleResponse(data, null, consoleEndPoint);
         }
 
         public Packet Location(byte[] data, IPEndPoint consoleEndPoint)
@@ -124,6 +101,34 @@ namespace DavidCloud.Controls
 
                     DavidConsoleRepository DavidConsoleRepository = container.Resolve<DavidConsoleRepository>();
                     DavidConsoleRepository.Save(console);
+                }
+            }
+            return UpdateConsoleResponse(data, null, consoleEndPoint);
+        }
+
+        public Packet Alert(byte[] data, IPEndPoint consoleEndPoint)
+        {
+            byte[] token = MessageBuilder.GetToken(data);
+            string tokenBase64 = Convert.ToBase64String(token);
+            lock (this)
+            {
+                if (mTokenDictionary.ContainsKey(tokenBase64))
+                {
+                    DavidConsole davidConsole = mTokenDictionary[tokenBase64];
+                    Alert alert = davidConsole.Alert; 
+
+                    int index = ConsoleRequest.PROTOCOL_HEADER_LENGTH + token.Length;
+                    String alertId = MessageBuilder.GetNext(data, ref index);
+                    alert.AlertId = alertId;
+                    String occuerTime = MessageBuilder.GetNext(data, ref index);
+                    alert.OccurTime = occuerTime;
+                    String alertDetail = MessageBuilder.GetNext(data, ref index);
+                    alert.AlertDetail = alertDetail;
+
+
+                    IUnityContainer container = UnityConfig.GetConfiguredContainer();
+                    DavidConsoleRepository DavidConsoleRepository = container.Resolve<DavidConsoleRepository>();
+                    DavidConsoleRepository.Save(davidConsole);
                 }
             }
             return UpdateConsoleResponse(data, null, consoleEndPoint);
@@ -205,7 +210,7 @@ namespace DavidCloud.Controls
             }
         }
 
-        //将data中的Head拷贝如Response的Head, 将body宝贝入Response的Body
+        //将data中的Head拷贝如Response的Head, 将body拷贝入Response的Body
         private Packet UpdateConsoleResponse(byte[] data, byte[] body, IPEndPoint consoleEndPoint)
         {
             IUnityContainer container = UnityConfig.GetConfiguredContainer();

@@ -13,12 +13,12 @@ namespace DavidCloud.Databases
 
         public DavidConsole SelectFromId(String consoleId)
         {
-            var DavidConsoles = davidDatabase.DavidConsoles.
+            var davidConsoles = davidDatabase.DavidConsoles.
                 Where(DavidConsole => DavidConsole.DavidConsoleId.Equals(consoleId));
 
-            if(DavidConsoles.Count() > 0)
+            if(davidConsoles != null && davidConsoles.Count() > 0)
             {
-                return DavidConsoles.First();
+                return davidConsoles.First();
             }
             return null;
         }
@@ -49,6 +49,7 @@ namespace DavidCloud.Databases
                 dbEntry.LoginTime = davidConsole.LoginTime;
                 dbEntry.HeartBeatTime = davidConsole.HeartBeatTime;
                 dbEntry.BaiduLocation = davidConsole.BaiduLocation;
+                dbEntry.Hospital = davidConsole.Hospital;
             } else
             {
                 davidDatabase.DavidConsoles.Add(davidConsole);

@@ -97,7 +97,9 @@
     <Compile Include="Databases\DavidDatabase.cs" />
     <Compile Include="Models\BaiduLocation.cs" />
     <Compile Include="Models\DavidConsole.cs" />
+    <Compile Include="Models\Hospital.cs" />
     <Compile Include="Models\Mobile.cs" />
+    <Compile Include="Models\Alert.cs" />
     <Compile Include="Networks\ClientExtensions.cs" />
     <Compile Include="Networks\ConsoleObserver.cs" />
     <Compile Include="Networks\ConsoleServer.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="Utils\ByteUtil.cs" />
     <Compile Include="Utils\Constant.cs" />
     <Compile Include="Utils\JsonHelper.cs" />
+    <Compile Include="Utils\StringUtil.cs" />
     <Compile Include="Utils\UnityConfig.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -138,9 +141,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="NLog.config" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -149,7 +155,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\Main\MainWindow.xaml">

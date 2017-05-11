@@ -37,6 +37,7 @@ namespace DavidCloud.Networks
                     IUnityContainer container = UnityConfig.GetConfiguredContainer();
                     ServiceManager serviceManager = container.Resolve<ServiceManager>();
                     serviceManager.Display("C" + request.MessageType);
+                    //mLogger.Info(StringUtil.ByteToHexString(datagram, 0, datagram.Length));
                 }
                 switch (request.MessageType)
                 {
@@ -51,17 +52,6 @@ namespace DavidCloud.Networks
                             SendUdpPacket(response);
                         }
                         break;
-                    case ConsoleRequest.HEART_BEAT_MESSAGE:
-                        {
-                            IPEndPoint consoleEndPoint = receiveResult.RemoteEndPoint;
-
-                            IUnityContainer container = UnityConfig.GetConfiguredContainer();
-                            ConsoleControl consoleControl = container.Resolve<ConsoleControl>();
-
-                            Packet response = consoleControl.HeartBeat(request.Datagram, consoleEndPoint);
-                            SendUdpPacket(response);
-                        }
-                        break;
                     case ConsoleRequest.LOCATION_MESSAGE:
                         {
                             IPEndPoint consoleEndPoint = receiveResult.RemoteEndPoint;
@@ -70,6 +60,17 @@ namespace DavidCloud.Networks
                             ConsoleControl consoleControl = container.Resolve<ConsoleControl>();
 
                             Packet response = consoleControl.Location(request.Datagram, consoleEndPoint);
+                            SendUdpPacket(response);
+                        }
+                        break;
+                    case ConsoleRequest.ALERT_MESSAGE:
+                        {
+                            IPEndPoint consoleEndPoint = receiveResult.RemoteEndPoint;
+
+                            IUnityContainer container = UnityConfig.GetConfiguredContainer();
+                            ConsoleControl consoleControl = container.Resolve<ConsoleControl>();
+
+                            Packet response = consoleControl.Alert(request.Datagram, consoleEndPoint);
                             SendUdpPacket(response);
                         }
                         break;
