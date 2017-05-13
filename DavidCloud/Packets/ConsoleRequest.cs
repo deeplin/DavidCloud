@@ -20,6 +20,7 @@ namespace DavidCloud.Packets
         public const int LOGIN_MESSAGE = 0;
         public const int LOCATION_MESSAGE = 5;
         public const int ALERT_MESSAGE = 6;
+        public const int ANALOG_MESSAGE = 7;
 
         public bool Encryption { get; set; }
 

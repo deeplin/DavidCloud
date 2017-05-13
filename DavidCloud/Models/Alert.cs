@@ -11,10 +11,15 @@ namespace DavidCloud.Models
     [DataContract]
     public class Alert
     {
-        [Key]
-        public int Id { get; set; }
-        public string AlertId { get; set; }
+        public string AlertName { get; set; }
         public string OccurTime { get; set; }
         public string AlertDetail { get; set; }
+
+        public Alert()
+        {
+            AlertName = "";
+            OccurTime = "";
+            AlertDetail = "";
+        }
     }
 }

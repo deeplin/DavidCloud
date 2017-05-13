@@ -118,13 +118,48 @@ namespace DavidCloud.Controls
                     Alert alert = davidConsole.Alert; 
 
                     int index = ConsoleRequest.PROTOCOL_HEADER_LENGTH + token.Length;
-                    String alertId = MessageBuilder.GetNext(data, ref index);
-                    alert.AlertId = alertId;
+                    String alertName = MessageBuilder.GetNext(data, ref index);
+                    alert.AlertName = alertName;
                     String occuerTime = MessageBuilder.GetNext(data, ref index);
                     alert.OccurTime = occuerTime;
                     String alertDetail = MessageBuilder.GetNext(data, ref index);
                     alert.AlertDetail = alertDetail;
 
+
+                    IUnityContainer container = UnityConfig.GetConfiguredContainer();
+                    DavidConsoleRepository DavidConsoleRepository = container.Resolve<DavidConsoleRepository>();
+                    DavidConsoleRepository.Save(davidConsole);
+                }
+            }
+            return UpdateConsoleResponse(data, null, consoleEndPoint);
+        }
+
+        public Packet Analog(byte[] data, IPEndPoint consoleEndPoint)
+        {
+            byte[] token = MessageBuilder.GetToken(data);
+            string tokenBase64 = Convert.ToBase64String(token);
+            lock (this)
+            {
+                if (mTokenDictionary.ContainsKey(tokenBase64))
+                {
+                    DavidConsole davidConsole = mTokenDictionary[tokenBase64];
+                    Analog analog= davidConsole.Analog;
+
+                    int index = ConsoleRequest.PROTOCOL_HEADER_LENGTH + token.Length;
+                    String skin = MessageBuilder.GetNext(data, ref index);
+                    analog.Skin = skin;
+                    String air = MessageBuilder.GetNext(data, ref index);
+                    analog.Air = air;
+                    String o2 = MessageBuilder.GetNext(data, ref index);
+                    analog.O2 = o2;
+                    String humidity = MessageBuilder.GetNext(data, ref index);
+                    analog.Hum = humidity;
+                    String spo2 = MessageBuilder.GetNext(data, ref index);
+                    analog.SPO2 = spo2;
+                    String pr = MessageBuilder.GetNext(data, ref index);
+                    analog.PR = pr;
+                    String occureTime = MessageBuilder.GetNext(data, ref index);
+                    analog.OccurTime = occureTime;
 
                     IUnityContainer container = UnityConfig.GetConfiguredContainer();
                     DavidConsoleRepository DavidConsoleRepository = container.Resolve<DavidConsoleRepository>();

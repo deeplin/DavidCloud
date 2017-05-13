@@ -21,6 +21,7 @@ namespace DavidCloud.Models
             BaiduLocation = new BaiduLocation();
             Hospital = new Hospital();
             Alert = new Alert();
+            Analog = new Analog();
         }
 
         [Key]
@@ -76,6 +77,8 @@ namespace DavidCloud.Models
         public Hospital Hospital { get; set; }
 
         public Alert Alert { get; set; }
+
+        public Analog Analog { get; set; }
 
         public String TokenBase64 { get; set; }
 

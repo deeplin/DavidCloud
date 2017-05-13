@@ -24,5 +24,14 @@ namespace DavidCloud.Models
 
         [MaxLength(32)]
         public string ContactMobile { get; set; }
+
+        public Hospital()
+        {
+            HospitalName = "";
+            HospitalAddress = "";
+            ContactName = "";
+            ContactPhone = "";
+            ContactMobile = "";
+        }
     }
 }

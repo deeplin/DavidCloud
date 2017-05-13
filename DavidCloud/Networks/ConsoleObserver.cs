@@ -74,6 +74,19 @@ namespace DavidCloud.Networks
                             SendUdpPacket(response);
                         }
                         break;
+                    case ConsoleRequest.ANALOG_MESSAGE:
+                        {
+                            {
+                                IPEndPoint consoleEndPoint = receiveResult.RemoteEndPoint;
+
+                                IUnityContainer container = UnityConfig.GetConfiguredContainer();
+                                ConsoleControl consoleControl = container.Resolve<ConsoleControl>();
+
+                                Packet response = consoleControl.Analog(request.Datagram, consoleEndPoint);
+                                SendUdpPacket(response);
+                            }
+                        }
+                        break;
                 }
             }
             catch (Exception e)

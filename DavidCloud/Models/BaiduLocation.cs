@@ -15,5 +15,12 @@ namespace DavidCloud.Models
         public string Address { get; set; }
         [DataMember(Name = "DC")]
         public string Describe { get; set; }
+
+        public BaiduLocation()
+        {
+            Address = "";
+            Describe = "";
+
+        }
     }
 }

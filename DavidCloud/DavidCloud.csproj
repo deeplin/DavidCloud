@@ -95,6 +95,7 @@
     <Compile Include="Controls\MessageBuilder.cs" />
     <Compile Include="Databases\DavidConsoleRepository.cs" />
     <Compile Include="Databases\DavidDatabase.cs" />
+    <Compile Include="Models\Analog.cs" />
     <Compile Include="Models\BaiduLocation.cs" />
     <Compile Include="Models\DavidConsole.cs" />
     <Compile Include="Models\Hospital.cs" />
