@@ -15,9 +15,9 @@ namespace DavidCloud.Utils
          */
         public static string JsonSerializer<T>(T t)
         {
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
                 serializer.WriteObject(memoryStream, t);
                 return Encoding.UTF8.GetString(memoryStream.ToArray());
             }
