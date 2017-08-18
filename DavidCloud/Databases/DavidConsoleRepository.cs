@@ -13,26 +13,32 @@ namespace DavidCloud.Databases
 
         public DavidConsole SelectFromId(String consoleId)
         {
-            var davidConsoles = davidDatabase.DavidConsoles.
-                Where(DavidConsole => DavidConsole.DavidConsoleId.Equals(consoleId));
-
-            if(davidConsoles != null && davidConsoles.Count() > 0)
+            lock (this)
             {
-                return davidConsoles.First();
+                var davidConsoles = davidDatabase.DavidConsoles.
+                    Where(DavidConsole => DavidConsole.DavidConsoleId.Equals(consoleId));
+
+                if (davidConsoles != null && davidConsoles.Count() > 0)
+                {
+                    return davidConsoles.First();
+                }
+                return null;
             }
-            return null;
         }
 
         public DavidConsole SelectFromToken(String tokenBase64)
         {
-            var davidConsoles = davidDatabase.DavidConsoles.
+            lock (this)
+            {
+                var davidConsoles = davidDatabase.DavidConsoles.
                 Where(DavidConsole => DavidConsole.TokenBase64.Equals(tokenBase64));
 
-            if (davidConsoles.Count() > 0)
-            {
-                return davidConsoles.First();
+                if (davidConsoles.Count() > 0)
+                {
+                    return davidConsoles.First();
+                }
+                return null;
             }
-            return null;
         }
 
         public async void Save(DavidConsole davidConsole)
