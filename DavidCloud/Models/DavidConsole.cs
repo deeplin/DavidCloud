@@ -19,8 +19,6 @@ namespace DavidCloud.Models
         public DavidConsole()
         {
             BaiduLocation = new BaiduLocation();
-            Hospital = new Hospital();
-            Alert = new Alert();
             Analog = new Analog();
         }
 
@@ -73,10 +71,6 @@ namespace DavidCloud.Models
 
         [DataMember(Name = "BL")]
         public BaiduLocation BaiduLocation { get; set; }
-
-        public Hospital Hospital { get; set; }
-
-        public Alert Alert { get; set; }
 
         public Analog Analog { get; set; }
 

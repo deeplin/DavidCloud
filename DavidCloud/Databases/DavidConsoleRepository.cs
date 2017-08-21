@@ -13,32 +13,26 @@ namespace DavidCloud.Databases
 
         public DavidConsole SelectFromId(String consoleId)
         {
-            lock (this)
-            {
-                var davidConsoles = davidDatabase.DavidConsoles.
-                    Where(DavidConsole => DavidConsole.DavidConsoleId.Equals(consoleId));
+            var davidConsoles = davidDatabase.DavidConsoles.
+                Where(DavidConsole => DavidConsole.DavidConsoleId.Equals(consoleId));
 
-                if (davidConsoles != null && davidConsoles.Count() > 0)
-                {
-                    return davidConsoles.First();
-                }
-                return null;
+            if (davidConsoles != null && davidConsoles.Count() > 0)
+            {
+                return davidConsoles.First();
             }
+            return null;
         }
 
-        public DavidConsole SelectFromToken(String tokenBase64)
+        public DavidConsole SelectFromTokenAsync(String tokenBase64)
         {
-            lock (this)
-            {
-                var davidConsoles = davidDatabase.DavidConsoles.
-                Where(DavidConsole => DavidConsole.TokenBase64.Equals(tokenBase64));
+            var davidConsoles = davidDatabase.DavidConsoles.
+            Where(DavidConsole => DavidConsole.TokenBase64.Equals(tokenBase64));
 
-                if (davidConsoles.Count() > 0)
-                {
-                    return davidConsoles.First();
-                }
-                return null;
+            if (davidConsoles != null && davidConsoles.Count() > 0)
+            {
+                return davidConsoles.First();
             }
+            return null;
         }
 
         public async void Save(DavidConsole davidConsole)
@@ -55,7 +49,6 @@ namespace DavidCloud.Databases
                 dbEntry.LoginTime = davidConsole.LoginTime;
                 dbEntry.HeartBeatTime = davidConsole.HeartBeatTime;
                 dbEntry.BaiduLocation = davidConsole.BaiduLocation;
-                dbEntry.Hospital = davidConsole.Hospital;
             } else
             {
                 davidDatabase.DavidConsoles.Add(davidConsole);

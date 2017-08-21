@@ -101,7 +101,6 @@
     <Compile Include="Models\DavidConsole.cs" />
     <Compile Include="Models\Hospital.cs" />
     <Compile Include="Models\Mobile.cs" />
-    <Compile Include="Models\Alert.cs" />
     <Compile Include="Networks\ClientExtensions.cs" />
     <Compile Include="Networks\ConsoleObserver.cs" />
     <Compile Include="Networks\ConsoleServer.cs" />

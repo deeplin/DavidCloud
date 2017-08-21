@@ -63,7 +63,6 @@ namespace DavidCloud.Utils
             container.RegisterType<DavidConsole>();
             container.RegisterType<Mobile>();
             container.RegisterType<BaiduLocation>();
-            container.RegisterType<Alert>();
 
             //commands
             container.RegisterType<ConsoleCommand>();

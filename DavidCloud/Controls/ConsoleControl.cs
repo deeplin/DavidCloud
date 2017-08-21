@@ -106,34 +106,6 @@ namespace DavidCloud.Controls
             return UpdateConsoleResponse(data, null, consoleEndPoint);
         }
 
-        public Packet Alert(byte[] data, IPEndPoint consoleEndPoint)
-        {
-            byte[] token = MessageBuilder.GetToken(data);
-            string tokenBase64 = Convert.ToBase64String(token);
-            lock (this)
-            {
-                if (mTokenDictionary.ContainsKey(tokenBase64))
-                {
-                    DavidConsole davidConsole = mTokenDictionary[tokenBase64];
-                    Alert alert = davidConsole.Alert; 
-
-                    int index = ConsoleRequest.PROTOCOL_HEADER_LENGTH + token.Length;
-                    String alertName = MessageBuilder.GetNext(data, ref index);
-                    alert.AlertName = alertName;
-                    String occuerTime = MessageBuilder.GetNext(data, ref index);
-                    alert.OccurTime = occuerTime;
-                    String alertDetail = MessageBuilder.GetNext(data, ref index);
-                    alert.AlertDetail = alertDetail;
-
-
-                    IUnityContainer container = UnityConfig.GetConfiguredContainer();
-                    DavidConsoleRepository DavidConsoleRepository = container.Resolve<DavidConsoleRepository>();
-                    DavidConsoleRepository.Save(davidConsole);
-                }
-            }
-            return UpdateConsoleResponse(data, null, consoleEndPoint);
-        }
-
         public Packet Analog(byte[] data, IPEndPoint consoleEndPoint)
         {
             byte[] token = MessageBuilder.GetToken(data);
@@ -146,18 +118,36 @@ namespace DavidCloud.Controls
                     Analog analog= davidConsole.Analog;
 
                     int index = ConsoleRequest.PROTOCOL_HEADER_LENGTH + token.Length;
-                    String skin = MessageBuilder.GetNext(data, ref index);
-                    analog.Skin = skin;
-                    String air = MessageBuilder.GetNext(data, ref index);
-                    analog.Air = air;
-                    String o2 = MessageBuilder.GetNext(data, ref index);
-                    analog.O2 = o2;
-                    String humidity = MessageBuilder.GetNext(data, ref index);
-                    analog.Hum = humidity;
-                    String spo2 = MessageBuilder.GetNext(data, ref index);
-                    analog.SPO2 = spo2;
-                    String pr = MessageBuilder.GetNext(data, ref index);
-                    analog.PR = pr;
+                    String S1A = MessageBuilder.GetNext(data, ref index);
+                    analog.S1A = S1A;
+                    String S1B = MessageBuilder.GetNext(data, ref index);
+                    analog.S1B = S1B;
+                    String S2 = MessageBuilder.GetNext(data, ref index);
+                    analog.S2 = S2;
+                    String S3 = MessageBuilder.GetNext(data, ref index);
+                    analog.S3 = S3;
+                    String A1 = MessageBuilder.GetNext(data, ref index);
+                    analog.A1 = A1;
+                    String A2 = MessageBuilder.GetNext(data, ref index);
+                    analog.A2 = A2;
+                    String A3 = MessageBuilder.GetNext(data, ref index);
+                    analog.A3 = A3;
+                    String F1 = MessageBuilder.GetNext(data, ref index);
+                    analog.F1 = F1;
+                    String H1 = MessageBuilder.GetNext(data, ref index);
+                    analog.H1 = H1;
+                    String O1 = MessageBuilder.GetNext(data, ref index);
+                    analog.O1 = O1;
+                    String O2 = MessageBuilder.GetNext(data, ref index);
+                    analog.O2 = O2;
+                    String SP = MessageBuilder.GetNext(data, ref index);
+                    analog.SP = SP;
+                    String PR = MessageBuilder.GetNext(data, ref index);
+                    analog.PR = PR;
+                    String PI = MessageBuilder.GetNext(data, ref index);
+                    analog.PI = PI;
+                    String VU = MessageBuilder.GetNext(data, ref index);
+                    analog.VU = VU;
                     String occureTime = MessageBuilder.GetNext(data, ref index);
                     analog.OccurTime = occureTime;
 
