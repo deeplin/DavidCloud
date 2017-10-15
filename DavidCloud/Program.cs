@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DavidCloud.Networks
+namespace DavidCloud
 {
-    interface IConsoleServer
+    class Program
     {
-        void Start();
-        void Dispose();
+        static void Main(string[] args)
+        {
+        }
     }
 }
