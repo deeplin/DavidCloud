@@ -50,7 +50,7 @@ namespace DavidCloud.Handlers
         {
             MessageTypeEnum messageType = (MessageTypeEnum)consolePacket.MessageType;
             string operationString;
-            if (messageType == MessageTypeEnum.LadderOriented)
+            if (messageType == MessageTypeEnum.ConsoleOriented)
             {
                 operationString = consolePacket.Operation.ToString();
             }

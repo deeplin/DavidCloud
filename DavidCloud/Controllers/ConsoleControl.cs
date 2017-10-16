@@ -1,4 +1,5 @@
-﻿using DotNetty.Handlers.Logging;
+﻿using DavidCloud.Handlers;
+using DotNetty.Handlers.Logging;
 using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
@@ -27,12 +28,12 @@ namespace DavidCloud.Controllers
             consoleBootstrap
                 .Group(consoleGroup)
                 .Channel<SocketDatagramChannel>()
-                .Handler(new LoggingHandler("LADDER-SRV"))
+                .Handler(new LoggingHandler("CONSOLE-SRV"))
                 .Handler(new ActionChannelInitializer<IChannel>(channel =>
                 {
                     IChannelPipeline pipeline = channel.Pipeline;
 
-                    //pipeline.AddLast(new LadderLogHandler("LADDER-CONN"));
+                    pipeline.AddLast(new ConsoleLogHandler("CONSOLE-CONN"));
                     //pipeline.AddLast(new DatagramDecoder());
                     //pipeline.AddLast(new DatagramEncoder());
                     //pipeline.AddLast(new DatagramHandler());
@@ -40,7 +41,6 @@ namespace DavidCloud.Controllers
 
             consoleBoundChannel = await consoleBootstrap.BindAsync(port);
         }
-
 
         public async Task Stop()
         {
