@@ -34,9 +34,9 @@ namespace DavidCloud.Controllers
                     IChannelPipeline pipeline = channel.Pipeline;
 
                     pipeline.AddLast(new ConsoleLogHandler("CONSOLE-CONN"));
-                    //pipeline.AddLast(new DatagramDecoder());
-                    //pipeline.AddLast(new DatagramEncoder());
-                    //pipeline.AddLast(new DatagramHandler());
+                    pipeline.AddLast(new DatagramDecoder());
+                    pipeline.AddLast(new DatagramEncoder());
+                    pipeline.AddLast(new DatagramHandler());
                 }));
 
             consoleBoundChannel = await consoleBootstrap.BindAsync(port);

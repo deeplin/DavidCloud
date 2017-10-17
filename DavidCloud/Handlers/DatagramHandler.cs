@@ -18,13 +18,13 @@ namespace DavidCloud.Handlers
         {
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
 
-            //#region Server Strategy
-            //LoginStrategy loginStrategy = container.Resolve<LoginStrategy>();
-            //AddStrategy(MessageTypeEnum.Login, loginStrategy);
+            #region Server Strategy
+            LoginStrategy loginStrategy = container.Resolve<LoginStrategy>();
+            AddStrategy(MessageTypeEnum.Login, loginStrategy);
 
-            //HeartBeatStrategy heartBeatStrategy = container.Resolve<HeartBeatStrategy>();
-            //AddStrategy(MessageTypeEnum.HeatBeat, heartBeatStrategy);
-            //#endregion
+            HeartBeatStrategy heartBeatStrategy = container.Resolve<HeartBeatStrategy>();
+            AddStrategy(MessageTypeEnum.HeatBeat, heartBeatStrategy);
+            #endregion
         }
 
         private void AddStrategy(MessageTypeEnum messageType, IStrategy strategy)

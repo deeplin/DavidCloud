@@ -171,3 +171,6 @@ D:\Cloud\DavidCloud\DavidCloud\obj\Debug\DavidCloud.pdb
 D:\Cloud\DavidCloud\DavidCloud\bin\Debug\AppSettings.json
 D:\Cloud\DavidCloud\DavidCloud\bin\Debug\NLog.config
 D:\Cloud\DavidCloud\DavidCloud\bin\Debug\CommonServiceLocator.dll
+D:\Cloud\DavidCloud\DavidCloud\bin\Debug\Domain.dll
+D:\Cloud\DavidCloud\DavidCloud\bin\Debug\Domain.pdb
+D:\Cloud\DavidCloud\DavidCloud\bin\Debug\Domain.dll.config

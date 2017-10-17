@@ -1,8 +1,10 @@
 ﻿using DavidCloud.Controllers;
 using DavidCloud.Utils;
+using Domain.Contexts;
 using Microsoft.Practices.Unity;
 using NLog;
 using System;
+using System.Data.Entity;
 using System.Threading.Tasks;
 
 namespace DavidCloud
@@ -14,7 +16,11 @@ namespace DavidCloud
         public static void Main()
         {
             SystemHelper.SetConsoleLogger();
-
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ConsoleContext>());
+            using (ConsoleContext consoleContext = new ConsoleContext())
+            {
+                consoleContext.Database.CreateIfNotExists();
+            }
             try
             {
                 Start().Wait();
