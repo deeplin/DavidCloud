@@ -40,6 +40,7 @@ namespace DavidWeb.App_Start
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<ConsoleContext>(new ContainerControlledLifetimeManager());
             container.RegisterType<ConsoleRepository>(new ContainerControlledLifetimeManager());
             container.RegisterType<IAuthProvider, FormsAuthProvider>();
         }

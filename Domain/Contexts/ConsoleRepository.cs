@@ -6,15 +6,18 @@ namespace Domain.Contexts
 {
     public class ConsoleRepository
     {
-        private ConsoleContext consoleContext = new ConsoleContext();
+        private ConsoleContext consoleContext;
+
+        public ConsoleRepository(ConsoleContext consoleContext)
+        {
+            this.consoleContext = consoleContext;
+        }
 
         public IList<DavidConsole> GetConsoles()
         {
             lock (this)
             {
-                var consoles = from console in consoleContext.Consoles
-                              select console;
-                return consoles.ToList();
+                return consoleContext.Consoles.ToList();
             }
         }
 
@@ -77,7 +80,7 @@ namespace Domain.Contexts
                 DavidConsole dbEntry = GetConsoleByEndPoint(endPoint);
                 if (dbEntry != null)
                 {
-                    if(dbEntry.Analog == null)
+                    if (dbEntry.Analog == null)
                     {
                         dbEntry.Analog = new Analog();
                     }

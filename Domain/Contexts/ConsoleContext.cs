@@ -23,9 +23,9 @@ namespace Domain.Contexts
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
-        public virtual DbSet<DavidConsole> Consoles { get; set; }
+        public DbSet<DavidConsole> Consoles { get; set; }
 
-        public virtual DbSet<Analog> Analogs { get; set; }
+        public DbSet<Analog> Analogs { get; set; }
 
     }
 }

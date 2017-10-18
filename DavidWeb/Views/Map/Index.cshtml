@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=dYbPZG1sF7rFATdGcubWmTtm9wF8KRI8">
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=bBK0hE9WinPL0P5KzL9diygGEXswXGcH">
 </script>
 
 <div style="width:auto;height:700px;border:#ccc solid 1px;" id="container"></div>
@@ -14,7 +14,7 @@
     var opts = {
         width : 250,
         height: 80,
-        title : "戴维医疗",
+        title : "戴维 YP-3000",
         enableMessage:true
     };
     function addClickHandler(content,marker){
@@ -34,31 +34,40 @@
         map.addOverlay(marker);
         addClickHandler(content, marker);
     }
+
+    function formatValue(value) {
+        if (value < 0) {
+            return "NA";
+        } else {
+            return value;
+        }
+    }
     var map = new BMap.Map("container");          // 创建地图实例
 
     @foreach (var davidConsole in Model)
     {
     <text>
     // 创建点坐标
-    var point = new BMap.Point(@davidConsole.BaiduLocation.Longitude, @davidConsole.BaiduLocation.Latitude);
-    var label = new BMap.Label("@davidConsole.DeviceModel",{offset:new BMap.Size(-20,-20)});
+    var point = new BMap.Point(@davidConsole.Longitude, @davidConsole.Latitude);
+    var label = new BMap.Label("David 3000", { offset: new BMap.Size(-20, -20) });
+
     var content =
-        "@davidConsole.Analog.OccurTime"
-        + " S1A:" + "@davidConsole.Analog.S1A"
-        + " S1B:" + "@davidConsole.Analog.S1B"
-        + " S2:" + "@davidConsole.Analog.S2"
-        + " S3:" + "@davidConsole.Analog.S3"
-        + " A1:" + "@davidConsole.Analog.A1"
-        + " A2:" + "@davidConsole.Analog.A2"
-        + " A3:" + "@davidConsole.Analog.A3"
-        + " F1:" + "@davidConsole.Analog.F1"
-        + " H1:" + "@davidConsole.Analog.H1"
-        + " O1:" + "@davidConsole.Analog.O1"
-        + " O2:" + "@davidConsole.Analog.O2"
-        + " SP:" + "@davidConsole.Analog.SP"
-        + " PR:" + "@davidConsole.Analog.PR"
-        + " PI:" + "@davidConsole.Analog.PI"
-        + " VU:" + "@davidConsole.Analog.VU";
+        "@davidConsole.Analog.Time"
+        + " S1A:" + formatValue("@davidConsole.Analog.S1A")
+        + " S1B:" + formatValue("@davidConsole.Analog.S1B")
+        + " S2:" + formatValue("@davidConsole.Analog.S2")
+        + " S3:" + formatValue("@davidConsole.Analog.S3")
+        + " A1:" + formatValue("@davidConsole.Analog.A1")
+        + " A2:" + formatValue("@davidConsole.Analog.A2")
+        + " A3:" + formatValue("@davidConsole.Analog.A3")
+        + " F1:" + formatValue("@davidConsole.Analog.F1")
+        + " H1:" + formatValue("@davidConsole.Analog.H1")
+        + " O1:" + formatValue("@davidConsole.Analog.O1")
+        + " O2:" + formatValue("@davidConsole.Analog.O2")
+        + " SP:" + formatValue("@davidConsole.Analog.SP")
+        + " PR:" + formatValue("@davidConsole.Analog.PR")
+        + " PI:" + formatValue("@davidConsole.Analog.PI")
+        + " VU:" + formatValue("@davidConsole.Analog.VU");
     addMarker(point, content);
     </text>
     }

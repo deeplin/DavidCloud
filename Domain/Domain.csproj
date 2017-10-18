@@ -53,6 +53,7 @@
     <Compile Include="Entities\Analog.cs" />
     <Compile Include="Entities\DavidConsole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\TimeUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

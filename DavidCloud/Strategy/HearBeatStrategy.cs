@@ -1,15 +1,10 @@
-﻿using DavidCloud.Handlers;
-using DavidCloud.Models;
+﻿using DavidCloud.Models;
 using DavidCloud.Utils;
 using Domain.Contexts;
 using Domain.Entities;
 using DotNetty.Transport.Channels;
 using Microsoft.Practices.Unity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DavidCloud.Strategy
 {
@@ -29,7 +24,9 @@ namespace DavidCloud.Strategy
             byte[] body = ladderPacket.Body;
             long timeHigh = PacketUtil.GetInteger(body, ref index);
             long timeLow = PacketUtil.GetInteger(body, ref index);
-            analog.Time = (timeHigh << 32) + timeLow;
+            long time = (timeHigh << 32) + timeLow;
+            DateTime dateTime = TimeUtil.ConvertJavaDateTimeToNetTime(time);
+            analog.Time = dateTime.ToString("yyyy-MM-dd HH:mm:ss");
 
             analog.S1A = PacketUtil.GetInteger(body, ref index);
             analog.S1B = PacketUtil.GetInteger(body, ref index);

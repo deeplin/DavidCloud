@@ -172,6 +172,7 @@
     <Compile Include="Utils\ServerSetting.cs" />
     <Compile Include="Utils\StringUtil.cs" />
     <Compile Include="Utils\SystemHelper.cs" />
+    <Compile Include="Utils\TimeUtil.cs" />
     <Compile Include="Utils\UnityConfig.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,8 @@ namespace Domain.Entities
     {
         [Key]
         public int AnalogId { get; set; }
-        public long Time { get; set; }
+        [StringLength(32)]
+        public string Time { get; set; }
         public int S1A { get; set; }
         public int S1B { get; set; }
         public int S2 { get; set; }
