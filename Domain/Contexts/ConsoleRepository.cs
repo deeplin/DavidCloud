@@ -1,15 +1,22 @@
 ﻿using Domain.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Contexts
 {
     public class ConsoleRepository
     {
         private ConsoleContext consoleContext = new ConsoleContext();
+
+        public IList<DavidConsole> GetConsoles()
+        {
+            lock (this)
+            {
+                var consoles = from console in consoleContext.Consoles
+                              select console;
+                return consoles.ToList();
+            }
+        }
 
         public DavidConsole GetConsoleById(string consoleId)
         {
