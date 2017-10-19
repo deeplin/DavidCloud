@@ -44,18 +44,26 @@ namespace DavidCloud.Strategy
             davidConsole.LoginTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             davidConsole.HeartBeatTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
+            double longitude = 0;
+            double latitude = 0;
             //解析经纬度
             try
             {
                 string[] locations = longlat.Split(',');
-                davidConsole.Longitude = Double.Parse(locations[0]);
-                davidConsole.Latitude = Double.Parse(locations[1]);
+                if (Double.Parse(locations[0]) > 0)
+                {
+                    longitude = Double.Parse(locations[0]);
+                }
+                if (Double.Parse(locations[1]) > 0)
+                {
+                    latitude = Double.Parse(locations[1]);
+                }
             }
             catch (Exception)
             {
-                davidConsole.Longitude = null;
-                davidConsole.Latitude = null;
             }
+            davidConsole.Longitude = longitude;
+            davidConsole.Latitude = latitude;
 
             ConsoleLogHandler.Log(ConsoleLogHandler.DOUBLE_IN, String.Format("Login: Id={0} LG={1} LT={2}",
                 davidConsole.ConsoleId, davidConsole.Longitude, davidConsole.Latitude));

@@ -19,3 +19,4 @@ D:\Cloud\DavidCloud2\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cach
 D:\Cloud\DavidCloud2\Domain\obj\Debug\Domain.csproj.CoreCompileInputs.cache
 D:\Cloud\DavidCloud2\Domain\obj\Debug\Domain.dll
 D:\Cloud\DavidCloud2\Domain\obj\Debug\Domain.pdb
+D:\Cloud\DavidCloud\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache

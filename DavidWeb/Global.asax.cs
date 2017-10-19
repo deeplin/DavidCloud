@@ -13,7 +13,7 @@ namespace DavidWeb
             {
                 consoleContext.Database.CreateIfNotExists();
             }
-            
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

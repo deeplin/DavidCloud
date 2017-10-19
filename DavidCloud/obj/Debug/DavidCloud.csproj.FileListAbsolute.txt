@@ -164,7 +164,6 @@ D:\Cloud\DavidCloud\DavidCloud\bin\Debug\System.Reactive.PlatformServices.xml
 D:\Cloud\DavidCloud\DavidCloud\bin\Debug\System.Reactive.Windows.Threading.xml
 D:\Cloud\DavidCloud\DavidCloud\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\Cloud\DavidCloud\DavidCloud\obj\Debug\DavidCloud.csprojResolveAssemblyReference.cache
-D:\Cloud\DavidCloud\DavidCloud\obj\Debug\DavidCloud.csproj.DavidCloud.exe.config
 D:\Cloud\DavidCloud\DavidCloud\obj\Debug\DavidCloud.csproj.CoreCompileInputs.cache
 D:\Cloud\DavidCloud\DavidCloud\obj\Debug\DavidCloud.exe
 D:\Cloud\DavidCloud\DavidCloud\obj\Debug\DavidCloud.pdb
@@ -350,3 +349,4 @@ D:\Cloud\DavidCloud2\DavidCloud\obj\Debug\DavidCloud.csproj.DavidCloud.exe.confi
 D:\Cloud\DavidCloud2\DavidCloud\obj\Debug\DavidCloud.csproj.CoreCompileInputs.cache
 D:\Cloud\DavidCloud2\DavidCloud\obj\Debug\DavidCloud.exe
 D:\Cloud\DavidCloud2\DavidCloud\obj\Debug\DavidCloud.pdb
+D:\Cloud\DavidCloud\DavidCloud\obj\Debug\DavidCloud.exe.config
