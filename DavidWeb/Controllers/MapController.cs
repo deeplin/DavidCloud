@@ -17,11 +17,6 @@ namespace DavidWeb.Controllers
 
         public ActionResult Index()
         {
-            IEnumerable<DavidConsole> davidConsoles2 =
-    consoleRepository.GetConsoles().AsEnumerable();
-
-            int count = davidConsoles2.Count();
-
             IEnumerable<DavidConsole> davidConsoles =
                 consoleRepository.GetConsoles().AsEnumerable();
             return View(davidConsoles);
