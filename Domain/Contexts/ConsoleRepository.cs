@@ -8,9 +8,9 @@ namespace Domain.Contexts
     {
         private ConsoleContext consoleContext;
 
-        public ConsoleRepository(ConsoleContext consoleContext)
+        public ConsoleRepository()
         {
-            this.consoleContext = consoleContext;
+            this.consoleContext = new ConsoleContext();
         }
 
         public IList<DavidConsole> GetConsoles()
