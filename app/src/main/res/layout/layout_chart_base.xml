@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.async.davidconsole.ui.menu.chart.ChartBaseViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvChartCycleValue"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/border"
+            android:gravity="center"
+            android:text='@{viewModel.cycleValue + " hours"}'
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/cycle"
+            android:textColor="@color/info_dark"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvChartCycleValue"
+            app:layout_constraintRight_toLeftOf="@id/tvChartCycleValue" />
+
+        <ImageButton
+            android:id="@+id/ibChartCycleUp"
+            android:layout_width="@dimen/small_button_width"
+            android:layout_height="@dimen/small_button_height"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/button"
+            android:src="@mipmap/up"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/ibChartCycleDown"
+            android:layout_width="@dimen/small_button_width"
+            android:layout_height="@dimen/small_button_height"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/button"
+            android:src="@mipmap/down"
+            app:layout_constraintLeft_toRightOf="@id/ibChartCycleUp"
+            app:layout_constraintTop_toTopOf="@id/ibChartCycleUp" />
+
+        <Button
+            android:id="@+id/btChartDelete"
+            style="@style/button_style"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/delete"
+            app:layout_constraintLeft_toRightOf="@id/ibChartCycleDown"
+            app:layout_constraintTop_toTopOf="@id/ibChartCycleUp" />
+
+        <ImageView
+            android:id="@+id/ivChartYAxisTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="70dp"
+            android:src="@mipmap/percentage"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

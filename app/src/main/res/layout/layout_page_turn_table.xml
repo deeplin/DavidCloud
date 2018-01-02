@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 固定数据列容器 -->
+    <TableLayout
+        android:id="@+id/table_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/objective_background">
+
+        <!-- 固定数据列表头行 -->
+        <TableRow
+            android:id="@+id/table_head_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background" />
+
+        <!-- 固定数据列数据行 -->
+    </TableLayout>
+
+    <RelativeLayout
+        android:id="@+id/table_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/table_previous_button"
+            style="@style/button_style"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="120dp"
+            android:text="@string/previous_page" />
+
+        <Button
+            android:id="@+id/table_next_button"
+            style="@style/button_style"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="120dp"
+            android:text="@string/next_page" />
+    </RelativeLayout>
+</RelativeLayout>
