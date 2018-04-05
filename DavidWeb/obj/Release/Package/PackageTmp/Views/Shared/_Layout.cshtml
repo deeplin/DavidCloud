@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    @*<META HTTP-EQUIV="Refresh" content="10">*@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/ErrorStyles.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    <script language="javascript ">
+
+        setInterval(function () {
+            window.location.href = "/";
+        }, 1000);
+    </script>
+
+    <title>@ViewBag.Title</title>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse" role="navigation">
+        <a class="navbar-brand" href="#">戴维物联网</a>
+    </div>
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success">@TempData["message"]</div>
+    }
+    <div class="row panel">
+        @*<div id="menu" class="col-xs-3">
+                @Html.Action("Menu", "Nav")
+            </div>*@
+        <div class="col-xs-12">
+            @RenderBody()
+        </div>
+    </div>
+    <footer>
+        <p class="text-center lead">&copy; @DateTime.Now.Year - 宁波戴维医疗器械股份有限公司</p>
+        <p class="text-center lead">Ningbo David Medical Device Co., Ltd.</p>
+    </footer>
+</body>
+</html>

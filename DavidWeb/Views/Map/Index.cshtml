@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Domain.Entities.DavidConsole>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=bBK0hE9WinPL0P5KzL9diygGEXswXGcH">
+</script>
+
+<div style="width:auto;height:700px;border:#ccc solid 1px;" id="container"></div>
+
+<script type="text/javascript">
+    var opts = {
+        width : 250,
+        height: 80,
+        title : "戴维 YP-3000",
+        enableMessage:true
+    };
+    function addClickHandler(content,marker){
+        marker.addEventListener("click",function(e){
+            openInfo(content,e)}
+		);
+    }
+    function openInfo(content,e){
+        var p = e.target;
+        var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+        var infoWindow = new BMap.InfoWindow(content,opts);
+        map.openInfoWindow(infoWindow,point);
+    }
+    function addMarker(point,content){
+        var marker = new BMap.Marker(point);
+        marker.enableDragging();
+        map.addOverlay(marker);
+        addClickHandler(content, marker);
+    }
+
+    function formatValue(value) {
+        if (value < 0) {
+            return "NA";
+        } else {
+            return value;
+        }
+    }
+    var map = new BMap.Map("container");          // 创建地图实例
+
+    @foreach (var davidConsole in Model)
+    {
+    <text>
+    // 创建点坐标
+    var point = new BMap.Point(@davidConsole.Longitude, @davidConsole.Latitude);
+    var label = new BMap.Label("David 3000", { offset: new BMap.Size(-20, -20) });
+
+    var content =
+        "@davidConsole.Analog.Time"
+        + " 肤温1:" + formatValue("@davidConsole.Analog.S1A")
+        + " 独立肤温:" + formatValue("@davidConsole.Analog.S1B")
+        + " 肤温2:" + formatValue("@davidConsole.Analog.S2")
+        + " 箱温:" + formatValue("@davidConsole.Analog.A1")
+        + " 独立箱温:" + formatValue("@davidConsole.Analog.A2")
+        + " 风道:" + formatValue("@davidConsole.Analog.F1")
+        + " 湿度:" + formatValue("@davidConsole.Analog.H1")
+        + " 氧气1:" + formatValue("@davidConsole.Analog.O1")
+        + " 氧气2:" + formatValue("@davidConsole.Analog.O2")
+        + " 血氧:" + formatValue("@davidConsole.Analog.SP")
+        + " 脉搏:" + formatValue("@davidConsole.Analog.PR")
+        + " PI:" + formatValue("@davidConsole.Analog.PI")
+    addMarker(point, content);
+    </text>
+    }
+    map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+    map.addControl(new BMap.NavigationControl());
+    map.addControl(new BMap.ScaleControl());
+    map.addControl(new BMap.OverviewMapControl());
+    map.addControl(new BMap.MapTypeControl());
+</script>

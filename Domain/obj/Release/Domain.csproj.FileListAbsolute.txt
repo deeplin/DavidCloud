@@ -1,0 +1,11 @@
+D:\Cloud\DavidCloud\Domain\bin\Release\Domain.dll.config
+D:\Cloud\DavidCloud\Domain\bin\Release\Domain.dll
+D:\Cloud\DavidCloud\Domain\bin\Release\Domain.pdb
+D:\Cloud\DavidCloud\Domain\bin\Release\EntityFramework.dll
+D:\Cloud\DavidCloud\Domain\bin\Release\EntityFramework.SqlServer.dll
+D:\Cloud\DavidCloud\Domain\bin\Release\EntityFramework.xml
+D:\Cloud\DavidCloud\Domain\bin\Release\EntityFramework.SqlServer.xml
+D:\Cloud\DavidCloud\Domain\obj\Release\Domain.csprojResolveAssemblyReference.cache
+D:\Cloud\DavidCloud\Domain\obj\Release\Domain.csproj.CoreCompileInputs.cache
+D:\Cloud\DavidCloud\Domain\obj\Release\Domain.dll
+D:\Cloud\DavidCloud\Domain\obj\Release\Domain.pdb
